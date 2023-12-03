@@ -7,6 +7,7 @@ require (
 	github.com/golang/glog v1.0.0
 	github.com/google/gousb v1.1.1
 	github.com/hashicorp/go-multierror v1.1.1
+	github.com/schollz/progressbar/v3 v3.14.1 // indirect
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/pflag v1.0.5
 	github.com/tetratelabs/wazero v1.0.0-pre.1
