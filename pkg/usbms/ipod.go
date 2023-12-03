@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"howett.net/plist"
+	"github.com/schollz/progressbar/v3"
 )
 
 type DeviceInformation struct {
@@ -142,10 +143,10 @@ func (h *Host) IPodUpdateSendFull(kind IPodUpdateKind, data []byte) error {
 	if err := h.IPodUpdateStart(kind, uint32(origlen)); err != nil {
 		return fmt.Errorf("starting failed: %w", err)
 	}
+	bar := progressbar.DefaultBytes(int64(len(data)), "Uploading")
 	csize := 4096 * 8
 	for i := 0; i < len(data); i += csize {
-		pcnt := (i * 100) / len(data)
-		fmt.Printf("%d%%...\r", pcnt)
+		bar.Add(csize)
 		chunk := data[i:]
 		if len(chunk) > csize {
 			chunk = chunk[:csize]
